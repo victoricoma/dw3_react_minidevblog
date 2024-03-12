@@ -1,6 +1,7 @@
 import 'react'
-
+const item = 'texto'
 const NavBar =() =>{
+    const item2 = 'texto2'
     return(
         <>
         <nav>
