@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\basic\\basictools",
+    "\\basic\\basictools\\public",
+    "\\basic\\basictools\\src",
+    "\\basic\\basictools\\src\\components"
   ],
+  "SelectedNode": "\\basic",
   "PreviewInSolutionExplorer": false
 }
