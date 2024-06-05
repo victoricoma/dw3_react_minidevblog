@@ -1,10 +1,8 @@
-import { NavLink } from "react-router-dom";
-
-import { userAuthentication } from "../hooks/userAuthentication";
-
-import { useAuthValue } from "../context/AuthContext";
-
-import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom"
+import { userAuthentication } from "../hooks/userAuthentication"
+import { useAuthValue } from "../context/AuthContext"
+import styles from "./Navbar.module.css"
+import sair from "../../public/exit-svgrepo-com.svg"
 
 const Navbar = () => {
   const { logout } = userAuthentication();
@@ -74,7 +72,9 @@ const Navbar = () => {
         </li>
         {user && (
           <li>
-            <button onClick={logout}>Sair</button>
+            <button onClick={logout} className={styles.exit}>
+              <img src={sair} width="20" height="20"/>
+            </button>
           </li>
         )}
       </ul>
