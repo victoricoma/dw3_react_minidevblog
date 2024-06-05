@@ -1,67 +1,74 @@
-import React from 'react'
-import styles from './Login.module.css'
-import { useState, useEffect } from 'react'
-import { userAuthentication } from '../../hooks/userAuthentication'
-import { useNavigate } from 'react-router-dom'
+import styles from "./Login.module.css"
+
+import { useEffect, useState } from "react"
+import { userAuthentication } from "../../hooks/userAuthentication"
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
-    const { login, error: authError, loading } = userAuthentication()
-    const navigate = useNavigate()
+  const { login, error: authError, loading } = userAuthentication()
 
-    const handlerSubmit = async (e) => {
-        e.prenventDefault()
-        setError('')
-        const user = {
-            email,
-            password
-        }
-        const res = await login(user)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-        console.table(res)
-        navigate('/post/create')
+    setError("")
+
+    const user = {
+      email,
+      password,
     }
-    useEffect(() => {
-        if (authError) {
-            setError(authError)
-        }
-    }, [authError])
-    return (
-        <div className={styles.login}>
-            <h1>Entrar no MiniBlogDev</h1>
-            <p>Entre no ambiente onde ideias viram códigos!</p>
-            <form onSubmit={handlerSubmit}>
-                <label>
-                    <span>E-mail:</span>
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Entre com seu e-mail"
-                    />
-                </label>
-                <label>
-                    <span>Senha: </span>
-                    <input
-                    type="password"
-                    name="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Entre com sua senha"
-                    />
-                </label>
-                {!loading && <button className="btn">Login</button>}
-                {loading && <button className="btn" disabled>Aguarde...</button>}
-                {error && <p className="error">{error}</p>}
-            </form>
-        </div>
-    )
+
+    const res = await login(user)
+
+    console.log(res)
+  }
+
+  useEffect(() => {
+    console.log(authError)
+    if (authError) {
+      setError(authError)
+    }
+  }, [authError])
+
+  return (
+    <div className={styles.login}>
+      <h1>Entrar</h1>
+      <p>Faça o login para poder utilizar o sistema</p>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <span>E-mail:</span>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="E-mail do usuário"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+        </label>
+        <label>
+          <span>Senha:</span>
+          <input
+            type="password"
+            name="password"
+            required
+            placeholder="Insira a senha"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+        </label>
+        {!loading && <button className="btn">Entrar</button>}
+        {loading && (
+          <button className="btn" disabled>
+            Aguarde...
+          </button>
+        )}
+        {error && <p className="error">{error}</p>}
+      </form>
+    </div>
+  )
 }
 
 export default Login
