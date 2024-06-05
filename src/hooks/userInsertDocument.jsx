@@ -20,7 +20,7 @@ const insertReducer = (state, action) => {
     }
 }
 
-const userInsertDocument = (docCollection) => {
+export const userInsertDocument = (docCollection) => {
     const [response, dispatch] = useReducer(insertReducer, inictialState)
     const [cancelled, setCancelled] = useState(false)
 
