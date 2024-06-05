@@ -5,9 +5,9 @@ import styles from "./Navbar.module.css"
 import sair from "../../public/exit-svgrepo-com.svg"
 
 const Navbar = () => {
-  const { logout } = userAuthentication();
-  const { user } = useAuthValue();
-
+  const { logout } = userAuthentication()
+  const { user } = useAuthValue()
+  console.log(user)
   return (
     <nav className={styles.navbar}>
       <NavLink className={styles.brand} to="/">
