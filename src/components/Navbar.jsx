@@ -3,6 +3,7 @@ import { userAuthentication } from "../hooks/userAuthentication"
 import { useAuthValue } from "../context/AuthContext"
 import styles from "./Navbar.module.css"
 import sair from "../../public/exit-svgrepo-com.svg"
+import logo from "./../../public/logoDevBlog.png"
 
 const Navbar = () => {
   const { logout } = userAuthentication()
@@ -11,7 +12,9 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <NavLink className={styles.brand} to="/">
-        Mini <span>Blog</span> Developer
+        <div>
+          <img src={logo} alt="Brand" width="50px" height="30px" /> Mini <span>Blog</span>
+        </div>
       </NavLink>
       <ul className={styles.links_list}>
         <li>
@@ -73,7 +76,7 @@ const Navbar = () => {
         {user && (
           <li>
             <button onClick={logout} className={styles.exit}>
-              <img src={sair} width="20" height="20"/>
+              <img src={sair} width="20" height="20" />
             </button>
           </li>
         )}
